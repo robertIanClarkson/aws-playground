@@ -14,10 +14,9 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "sourceMap": true
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false
   },
-  "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.test.ts"]
 }
