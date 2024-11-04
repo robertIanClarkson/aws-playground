@@ -1,5 +1,5 @@
 {
-  "name": "basic-ts-to-js-compile",
+  "name": "basic-lambda-aws-cdk",
   "version": "1.0.0",
   "description": "Basic TypeScript AWS Lambda project",
   "main": "dist/index.js",
