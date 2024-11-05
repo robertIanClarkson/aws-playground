@@ -10,12 +10,13 @@
     "start": "node dist/index.js",
     "format": "prettier --write \"src/**/*.ts\" \"bin/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" \"bin/**/*.ts\" --fix",
-    "cdk": "cdk"
+    "cdktf": "cdktf"
   },
   "dependencies": {
     "@aws-sdk/client-lambda": "^3.511.0",
+    "@cdktf/provider-aws": "^19.1.0",
     "@types/aws-lambda": "^8.10.133",
-    "aws-cdk-lib": "^2.128.0",
+    "cdktf": "^0.20.0",
     "constructs": "^10.3.0"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",
     "aws-cdk": "^2.128.0",
+    "cdktf-cli": "^0.20.0",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
