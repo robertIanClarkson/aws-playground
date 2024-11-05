@@ -1,0 +1,35 @@
+{
+  "name": "complex-lambda-terraform-cdk",
+  "version": "1.0.0",
+  "description": "Basic TypeScript AWS Lambda project",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "pnpm esbuild src/index.ts --bundle --platform=node --target=node22.11 --outfile=dist/index.js",
+    "clean": "rm -R dist",
+    "build:clean": "pnpm clean && pnpm build",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "format": "prettier --write \"src/**/*.ts\" \"bin/**/*.ts\"",
+    "lint": "eslint \"src/**/*.ts\" \"bin/**/*.ts\" --fix",
+    "cdktf": "cdktf"
+  },
+  "dependencies": {
+    "@aws-sdk/client-lambda": "^3.511.0",
+    "@types/aws-lambda": "^8.10.133",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@cdktf/provider-aws": "^19.1.0",
+    "@types/node": "^20.11.24",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "cdktf": "^0.20.0",
+    "cdktf-cli": "^0.20.0",
+    "constructs": "^10.3.0",
+    "esbuild": "^0.20.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
