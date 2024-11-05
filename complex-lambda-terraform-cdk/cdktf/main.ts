@@ -10,19 +10,16 @@ class LambdaStack extends TerraformStack {
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
-    // AWS Provider
     new AwsProvider(this, "AWS", {
       region: "us-west-1", // Change to your desired region
-
     });
 
-    // Create Lambda asset
+    // Create Lambda asset from bundled output
     const lambdaAsset = new TerraformAsset(this, "lambda-asset", {
       path: path.resolve(__dirname, "../dist"),
       type: AssetType.ARCHIVE,
     });
 
-    // Create IAM role for Lambda
     const lambdaRole = new IamRole(this, "lambda-role", {
       name: "basic-lambda-role",
       assumeRolePolicy: JSON.stringify({
@@ -40,13 +37,11 @@ class LambdaStack extends TerraformStack {
       }),
     });
 
-    // Attach basic Lambda execution policy
     new IamRolePolicyAttachment(this, "lambda-managed-policy", {
       policyArn: "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
       role: lambdaRole.name,
     });
 
-    // Create Lambda function
     new LambdaFunction(this, "basic-lambda", {
       filename: lambdaAsset.path,
       functionName: "basic",
