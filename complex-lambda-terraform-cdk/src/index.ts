@@ -1,14 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { z } from 'zod';
-
-// Define the schema for request validation
-const NameRequestSchema = z.object({
-  firstName: z.string().min(1, 'First name is required'),
-  lastName: z.string().min(1, 'Last name is required'),
-});
-
-// Infer the type from the schema
-// type NameRequest = z.infer<typeof NameRequestSchema>;
+import { verify } from './verify';
 
 export const handler = async (
   event: APIGatewayProxyEvent,
@@ -22,7 +13,7 @@ export const handler = async (
     }
 
     // Parse and validate the request body
-    const result = NameRequestSchema.safeParse(JSON.parse(event.body));
+    const result = verify(JSON.parse(event.body));
 
     if (!result.success) {
       return {
@@ -42,7 +33,7 @@ export const handler = async (
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: `Hello, ${firstName} ${lastName}!`,
+        message: `Hello, ${firstName.toLowerCase()} ${lastName.toUpperCase()}!`,
       }),
     };
   } catch (error) {
@@ -64,3 +55,9 @@ export const handler = async (
     };
   }
 };
+
+const event = {
+  "body": "{\"firstName\":\"John\",\"lastName\":\"Doe\"}"
+} as APIGatewayProxyEvent;
+
+handler(event).then(console.log).catch(console.error)
