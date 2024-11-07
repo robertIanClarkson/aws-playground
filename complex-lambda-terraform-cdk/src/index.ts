@@ -1,5 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { verify } from './verify';
+import { lower } from "./lower";
+import { upper } from './upper';
 
 export const handler = async (
   event: APIGatewayProxyEvent,
@@ -33,7 +35,7 @@ export const handler = async (
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: `Hello, ${firstName.toLowerCase()} ${lastName.toUpperCase()}!`,
+        message: `Hello, ${lower(firstName)} ${upper(lastName)}!`,
       }),
     };
   } catch (error) {
