@@ -58,8 +58,8 @@ export const handler = async (
   }
 };
 
-const event = {
-  "body": "{\"firstName\":\"John\",\"lastName\":\"Doe\"}"
-} as APIGatewayProxyEvent;
+// const event = {
+//   "body": "{\"firstName\":\"John\",\"lastName\":\"Doe\"}"
+// } as APIGatewayProxyEvent;
 
-handler(event).then(console.log).catch(console.error)
+// handler(event).then(console.log).catch(console.error)
